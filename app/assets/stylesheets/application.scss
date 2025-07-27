@@ -1,0 +1,33 @@
+// =======================================
+// Import Bootstrap Framework
+// =======================================
+@import "bootstrap";
+
+// =======================================
+// Global Form Field Overrides
+// =======================================
+
+// Remove rounded corners from all Bootstrap form controls
+.form-control {
+  border-radius: 0 !important;
+}
+
+// =======================================
+// Custom Atelier Button Style
+// =======================================
+
+// Primary button for Marissa Atelier branding
+.btn-atelier {
+  background-color: #896629; // Brand gold-brown
+  color: #fafafa;            // Light text color
+  border: none;
+  border-radius: 0;          // Rectangle shape
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+}
+
+// Hover state
+.btn-atelier:hover {
+  background-color: #755723;
+  color: #fafafa;
+}

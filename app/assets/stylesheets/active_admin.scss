@@ -83,8 +83,15 @@ body.active_admin.devise-page #wrapper #title_bar .title_bar_title {
   border: 1px solid #aaa;
   padding: 10px;
   width: 100%;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1rem;
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1rem !important;
+}
+
+// Force Cormorant on login inputs for Devise page
+body.active_admin.devise-page #active_admin_content .login input[type="email"],
+body.active_admin.devise-page #active_admin_content .login input[type="password"] {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1rem !important;
 }
 
 // =======================================
@@ -166,4 +173,14 @@ body.active_admin.devise-page #wrapper {
   background-image: none !important;
   box-shadow: none !important;
   border: none !important;
+}
+
+// =======================================
+// FINAL Override for Devise Login Inputs
+// =======================================
+
+body.active_admin.devise-page input#admin_user_email,
+body.active_admin.devise-page input#admin_user_password {
+  font-family: 'Cormorant Garamond', serif !important;
+  font-size: 1rem !important;
 }

@@ -29,6 +29,9 @@ gem "devise"
 # SCSS support for ActiveAdmin and other stylesheets
 gem "sassc-rails"
 
+# Bootstrap CSS framework
+gem "bootstrap", "~> 5.3.2"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 

@@ -17,12 +17,22 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%# Load Google Font: Cormorant Garamond %>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-IuHSkNz7rN5Hepz5jwzR3gLhWwnASQpdtp7eVvCn2I1oS9gy5XpLPf0rUp2ZQ9ct" crossorigin="anonymous">
+
+    <%# Load compiled stylesheets from app/assets/stylesheets/application.scss %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
     <%= yield %>
+
+    <!-- Bootstrap JS Bundle (for dropdowns, modals, etc) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoYz1D9QeQbGusZT1MxXsdZ4ynTJTgiCkTnWjl0iGf8aN3z" crossorigin="anonymous"></script>
   </body>
 </html>
