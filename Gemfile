@@ -23,6 +23,9 @@ gem "jbuilder"
 # Admin interface
 gem "activeadmin"
 
+# Quill editor for rich text editing in ActiveAdmin
+gem "activeadmin_quill_editor" 
+
 # Devise is used for user authentication (login, logout, registration, etc.)
 gem "devise"
 
