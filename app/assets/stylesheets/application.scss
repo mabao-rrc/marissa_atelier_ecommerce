@@ -31,3 +31,116 @@
   background-color: #755723;
   color: #fafafa;
 }
+
+/* === Admin Products Branding === */
+
+body {
+  background-color: #e6e8e3;
+  color: #404040;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background-color: #896629;
+  color: #fafafa;
+  border: none;
+  padding: 10px 20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  text-transform: none;
+  box-shadow: none;
+  border-radius: 0; /* no rounded corners */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #74551f;
+  color: #fafafa;
+}
+
+/* === Admin Form Styling for Marissa Atelier (No White) === */
+
+form {
+  background-color: #f3f4f1; /* light background */;
+  padding: 30px;
+  border-radius: 0;
+}
+
+form label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: #404040;
+  margin-top: 20px;
+  display: block;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form textarea {
+  background-color: #fafafa; // Soft off-white
+  border: 1px solid #ccc;
+  border-radius: 0;
+  padding: 10px;
+  width: 100%;
+  font-family: 'Cormorant Garamond', serif;
+  color: #404040;
+}
+
+form input[type="submit"],
+form .button {
+  @extend .btn-atelier;
+  margin-top: 20px;
+}
+
+form .cancel {
+  @extend .btn-atelier;
+  background-color: #896629; // match primary button
+  margin-top: 20px;
+}
+
+
+// =======================================
+// Button Group Styling (Submit + Back)
+// =======================================
+
+.form-actions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+}
+
+/* === Admin Product Form Container === */
+
+.admin-product-form {
+  max-width: 700px;
+  margin: 0 auto; /* center the form */
+  padding: 2rem;
+  background-color: #f3f4f1; /* light background */
+  border: 1px solid #d0d2cc;
+  border-radius: 0;
+}
+
+.admin-product-form .form-control {
+  background-color: #fafafa;
+  color: #404040;
+  border: 1px solid #ccc;
+  border-radius: 0;
+}
+
+.admin-product-form label {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 500;
+  color: #404040;
+}
+
+.admin-product-form .btn {
+  margin-right: 10px;
+}
