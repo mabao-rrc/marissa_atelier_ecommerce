@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   # Associations
   # ----------------------------
 
-  belongs_to :brand   # ← Add this line
+  # belongs_to :brand   # ← Add this line
 
   has_many :order_items
   has_many :orders, through: :order_items
