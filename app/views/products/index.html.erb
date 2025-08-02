@@ -1,9 +1,29 @@
-<h1>All Products</h1>
+<!-- Page heading -->
+<h1 class="mb-4">All Products</h1>
 
-<% @products.each do |product| %>
-  <div class="product-card">
-    <%= image_tag product.image_url if product.image_url.present? %>
-    <h2><%= link_to product.name, product_path(product) %></h2>
-    <p><%= number_to_currency(product.price) %></p>
-  </div>
-<% end %>
+<!-- Masonry layout container -->
+<!-- This wraps all product cards in a Pinterest-style column layout using CSS -->
+<div class="product-masonry">
+  <% @products.each do |product| %>
+    <!-- Individual product card -->
+    <div class="product-card">
+      
+      <!-- Product image -->
+      <% if product.image_url.present? %>
+        <%= image_tag product.image_url, alt: product.name %>
+      <% end %>
+
+      <!-- Product name as link to show page -->
+      <h3 class="product-title"><%= link_to product.name, product_path(product) %></h3>
+
+      <!-- Product price -->
+      <p><strong><%= number_to_currency(product.price) %></strong></p>
+
+      <!-- Optional truncated description -->
+      <p><%= truncate(product.description, length: 80) %></p>
+
+      <!-- View Details button with custom Atelier style -->
+      <%= link_to "View Details", product_path(product), class: "btn btn-atelier mt-2" %>
+    </div>
+  <% end %>
+</div>
