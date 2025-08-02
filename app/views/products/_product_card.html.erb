@@ -1,0 +1,18 @@
+<div class="product-card">
+  <% if product.image_url.present? %>
+    <!-- Display product image if available -->
+    <%= image_tag product.image_url, alt: product.name %>
+  <% end %>
+
+  <!-- Product name as a clickable link that goes to the product's show page -->
+  <h3 class="product-title"><%= link_to product.name, product_path(product) %></h3>
+
+  <!-- Display product price in currency format -->
+  <p><strong><%= number_to_currency(product.price) %></strong></p>
+
+  <!-- Display a shortened version of the product description -->
+  <p><%= truncate(product.description, length: 80) %></p>
+
+  <!-- Button linking to the product's show page with custom styling -->
+  <%= link_to "View Details", product_path(product), class: "btn btn-atelier mt-2" %>
+</div>

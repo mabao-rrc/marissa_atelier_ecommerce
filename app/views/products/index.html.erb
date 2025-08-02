@@ -5,25 +5,7 @@
 <!-- This wraps all product cards in a Pinterest-style column layout using CSS -->
 <div class="product-masonry">
   <% @products.each do |product| %>
-    <!-- Individual product card -->
-    <div class="product-card">
-      
-      <!-- Product image -->
-      <% if product.image_url.present? %>
-        <%= image_tag product.image_url, alt: product.name %>
-      <% end %>
-
-      <!-- Product name as link to show page -->
-      <h3 class="product-title"><%= link_to product.name, product_path(product) %></h3>
-
-      <!-- Product price -->
-      <p><strong><%= number_to_currency(product.price) %></strong></p>
-
-      <!-- Optional truncated description -->
-      <p><%= truncate(product.description, length: 80) %></p>
-
-      <!-- View Details button with custom Atelier style -->
-      <%= link_to "View Details", product_path(product), class: "btn btn-atelier mt-2" %>
-    </div>
+    <!-- Render each product using the _product_card.html.erb partial -->
+    <%= render partial: "product_card", locals: { product: product } %>
   <% end %>
 </div>

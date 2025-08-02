@@ -1,0 +1,49 @@
+<!-- app/views/products/_form.html.erb -->
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <!-- Display validation errors if present -->
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul>
+        <% product.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Product Name -->
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <!-- Product Description -->
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, class: "form-control" %>
+  </div>
+
+  <!-- Product Price -->
+  <div class="form-group">
+    <%= form.label :price %>
+    <%= form.number_field :price, step: 0.01, class: "form-control" %>
+  </div>
+
+  <!-- Product Stock Quantity -->
+  <div class="form-group">
+    <%= form.label :stock_quantity %>
+    <%= form.number_field :stock_quantity, class: "form-control" %>
+  </div>
+
+  <!-- Product Image URL -->
+  <div class="form-group">
+    <%= form.label :image_url %>
+    <%= form.text_field :image_url, class: "form-control" %>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="form-group mt-3">
+    <%= form.submit class: "btn btn-atelier" %>
+  </div>
+<% end %>
