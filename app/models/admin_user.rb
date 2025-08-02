@@ -4,6 +4,11 @@ class AdminUser < ApplicationRecord
   devise :database_authenticatable, 
          :recoverable, :rememberable, :validatable
 
+  # ----------------------------
+  # Validations
+  # ----------------------------
+  validates :email, presence: true, uniqueness: true
+
   # Ransack whitelist for ActiveAdmin search
   def self.ransackable_attributes(auth_object = nil)
     %w[id email created_at updated_at]
