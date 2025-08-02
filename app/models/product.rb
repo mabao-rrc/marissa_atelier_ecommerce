@@ -1,9 +1,9 @@
-# app/models/product.rb
-
 class Product < ApplicationRecord
   # ----------------------------
   # Associations
   # ----------------------------
+
+  belongs_to :brand   # ← Add this line
 
   has_many :order_items
   has_many :orders, through: :order_items
