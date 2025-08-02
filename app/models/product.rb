@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   # Associations
   # ----------------------------
 
-  # belongs_to :brand   # ← Add this line
+  # belongs_to :brand   # ← Commented out since brand_id is not in the schema
 
   has_many :order_items
   has_many :orders, through: :order_items
@@ -12,10 +12,12 @@ class Product < ApplicationRecord
   has_many :categories, through: :product_categories
 
   # ----------------------------
-  # Validations
+  # Validations (Feature 4.2.1)
   # ----------------------------
 
-  validates :name, :description, :price, :stock_quantity, :image_url, presence: true
-  validates :price, numericality: { greater_than_or_equal_to: 0 }
-  validates :stock_quantity, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :stock_quantity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :image_url, presence: true
 end
