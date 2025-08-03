@@ -28,6 +28,8 @@ ActiveAdmin.register Product do
   end
 
   form do |f|
+    f.semantic_errors
+
     f.inputs 'Product Details' do
       f.input :name
       f.input :description
@@ -36,6 +38,7 @@ ActiveAdmin.register Product do
       f.input :image_url
       f.input :categories, as: :check_boxes, collection: Category.all
     end
+
     f.actions
   end
 end

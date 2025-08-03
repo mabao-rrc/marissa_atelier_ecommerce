@@ -1,0 +1,49 @@
+<%# app/views/admin/products/_product_card.html.erb %>
+<%# This partial renders a single product card for the admin dashboard %>
+<%# It displays the product image, name, price, and admin actions (edit/delete) %>
+<%# The card is styled to fit within a grid layout for the admin product management page %>
+<%# The product image is responsive and maintains a 2:3 aspect ratio %>
+<%# If no image is provided, a placeholder image is displayed %>
+<%# The card is designed to be visually appealing and functional for quick admin actions %>
+<%# The card uses inline styles for simplicity, but could be refactored into a CSS class for better maintainability %>
+
+<div style="width: 22%; min-width: 220px; background: #fafafa; border: 1px solid #ccc; border-radius: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); display: flex; flex-direction: column; justify-content: space-between;">
+  
+  <!-- Product image section -->
+  <div style="padding: 0.5rem;">
+    <% if product.image_url.present? %>
+      <!-- Display actual product image -->
+      <%= image_tag product.image_url,
+          alt: product.name,
+          style: "width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover; border-bottom: 1px solid #eee;" %>
+    <% else %>
+      <!-- Show placeholder image if no image_url is set -->
+      <%= image_tag "https://via.placeholder.com/400x600?text=No+Image",
+          alt: "No image for #{product.name}",
+          style: "width: 100%; height: auto; aspect-ratio: 2 / 3; object-fit: cover; border-bottom: 1px solid #eee;" %>
+    <% end %>
+  </div>
+
+  <!-- Product info and admin action links -->
+  <div style="padding: 0.75rem 1rem;">
+    <!-- Product name -->
+    <h5 style="font-size: 1rem; font-weight: 600;"><%= product.name %></h5>
+
+    <!-- Product price with 2 decimal precision -->
+    <p style="margin-bottom: 0.75rem;"><strong>$<%= number_with_precision(product.price, precision: 2) %></strong></p>
+
+    <!-- Admin action buttons: Edit and Delete -->
+    <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+      <!-- Link to edit the product -->
+      <%= link_to "Edit", edit_admin_product_path(product),
+          style: "text-decoration: none; color: #896629;" %>
+
+      <!-- Link to delete the product with confirmation prompt -->
+      <%= link_to "Delete", admin_product_path(product),
+          method: :delete,
+          data: { confirm: "Are you sure?" },
+          style: "text-decoration: none; color: #896629;" %>
+    </div>
+  </div>
+
+</div>

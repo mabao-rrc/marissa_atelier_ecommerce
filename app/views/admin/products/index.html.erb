@@ -1,42 +1,15 @@
-<div class="text-center mt-5 mb-4">
-  <h1>Manage Products</h1>
-  <%= link_to "Add New Product", new_admin_product_path, class: "btn btn-atelier mt-3" %>
+<!-- Page header with centered text -->
+<div class="mt-5 mb-4" style="text-align: center;">
+  <h1 style="font-weight: 700;">Manage Products</h1>
+
+  <!-- Button to add a new product -->
+  <%= link_to "Add New Product", new_admin_product_path,
+      class: "btn btn-atelier mt-3",
+      style: "display: inline-block; font-weight: 500;" %>
 </div>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <% @products.each do |product| %>
-      <div class="col-md-4 col-lg-3 mb-4">
-        <div class="card h-100 shadow-sm" style="border-radius: 0;">
-          <% if product.image_url.present? %>
-            <!-- Display product image if available -->
-            <img src="<%= product.image_url %>"
-                 class="card-img-top"
-                 alt="<%= product.name %>"
-                 style="object-fit: cover; height: 260px; border-radius: 0;">
-          <% else %>
-            <!-- Display a placeholder image if none is provided -->
-            <img src="https://via.placeholder.com/400x260?text=No+Image"
-                 class="card-img-top"
-                 alt="No image for <%= product.name %>"
-                 style="object-fit: cover; height: 260px; border-radius: 0;">
-          <% end %>
-
-          <div class="card-body">
-            <!-- Product name -->
-            <h5 class="card-title"><%= product.name %></h5>
-
-            <!-- Product price -->
-            <p class="card-text"><strong>$<%= number_with_precision(product.price, precision: 2) %></strong></p>
-
-            <!-- Edit and Delete buttons -->
-            <div class="d-flex justify-content-between">
-              <%= link_to "Edit", edit_admin_product_path(product), class: "btn btn-sm btn-atelier" %>
-              <%= link_to "Delete", admin_product_path(product), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-atelier" %>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
+<!-- Product grid container -->
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; padding: 1rem;">
+  <!-- Render each product using the admin product card partial -->
+  <%= render partial: 'product_card', collection: @products, as: :product %>
 </div>
