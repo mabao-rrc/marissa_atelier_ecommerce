@@ -1,5 +1,6 @@
+# app/models/review.rb
 class Review < ApplicationRecord
-  belongs_to :customer
+  belongs_to :customer, optional: true
   belongs_to :product
 
   validates :customer_id, :product_id, :rating, :comment, presence: true
