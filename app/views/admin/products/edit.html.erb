@@ -1,3 +1,10 @@
-<h1>Edit Product</h1>
-<%= render 'form', product: @product %>
-<%= link_to "Back", admin_products_path, class: "btn btn-atelier mt-3" %>
+<%# app/views/admin/products/edit.html.erb
+     This view renders the "Edit Product" form for the admin dashboard.
+     Uses inline styles to match the styling of new.html.erb.
+%>
+
+<h1 class="text-center mb-4" style="color: #896629; font-weight: 700;">Edit Product</h1>
+
+<div style="max-width: 700px; margin: 0 auto; padding: 2rem; background-color: #f3f4f1; border: 1px solid #d0d2cc; font-family: 'Cormorant Garamond', serif;">
+  <%= render 'form', product: @product %>
+</div>
