@@ -4,9 +4,12 @@ Rails.application.routes.draw do
   get "products/index"
   get "products/show"
 
-  # ✅ Public-facing product pages
-  resources :products, only: [:index, :show]
-
+  # ✅ Public-facing product pages with review submission support
+  resources :products, only: [:index, :show] do
+    resources :reviews, only: [:create]
+  end
+  
+  # ✅ Admin dashboard for managing products
   namespace :admin do
     resources :products
   end

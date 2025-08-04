@@ -1,0 +1,25 @@
+<%# ------------------------------------------ %>
+<%# Review Partial                            %>
+<%# Renders a single customer review with     %>
+<%# styled stars, comment, and customer ID    %>
+<%# ------------------------------------------ %>
+
+<div style="background-color: #f3f4f1; border: 1px solid #ccc; padding: 1rem; margin-bottom: 1rem; color: #404040;">
+  
+  <%# Star Rating Display – solid ★ for rating, hollow ☆ for the rest %>
+  <p style="margin-bottom: 0.5rem;">
+    <strong>Rating:</strong>
+    <%= '★' * review.rating %><%= '☆' * (5 - review.rating) %>
+  </p>
+
+  <%# Customer comment text %>
+  <p style="margin-bottom: 0.5rem;">
+    <strong>Comment:</strong> <%= review.comment %>
+  </p>
+
+  <%# Basic customer identifier for now – replace with name if available %>
+  <p style="font-size: 0.9rem; color: #777;">
+    – Customer #<%= review.customer_id %>
+  </p>
+  
+</div>
