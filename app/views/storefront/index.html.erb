@@ -1,0 +1,37 @@
+<%# app/views/storefront/index.html.erb
+    Displays products in a Pinterest-style vertical layout using masonry columns
+%>
+
+<h1 class="text-center my-5" style="color: #896629; font-family: 'Cormorant Garamond', serif; font-weight: 700;">
+  Our Products
+</h1>
+
+<%# Category Navigation Section (Feature 2.2) %>
+<div class="container mb-4">
+  <h2 class="text-center">Browse by Category</h2>
+  <div class="d-flex flex-wrap justify-content-center gap-3">
+    <% Category.all.each do |category| %>
+      <%= link_to category.name, category_path(category), class: "btn btn-atelier" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="product-masonry">
+  <% @products.each do |product| %>
+    <div class="product-card">
+      <% if product.image_url.present? %>
+        <%= image_tag product.image_url, alt: product.name %>
+      <% end %>
+
+      <h2 class="product-title">
+        <%= link_to product.name, product_path(product) %>
+      </h2>
+
+      <p class="product-price">
+        $<%= number_with_precision(product.price, precision: 2) %>
+      </p>
+
+      <%= link_to 'View Details', product_path(product), class: "btn btn-primary mt-2" %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,22 @@
+<%# -------------------------------------- %>
+<%# Category Show Page – Feature 2.2       %>
+<%# Shows all products belonging to one category %>
+<%# -------------------------------------- %>
+
+<div class="container my-5">
+  <h1 class="text-center mb-4"><%= @category.name %></h1>
+
+  <div class="product-masonry">
+    <% @products.each do |product| %>
+      <div class="product-card">
+        <%= image_tag product.image_url, alt: product.name if product.image_url.present? %>
+        <h2 class="product-title">
+          <%= link_to product.name, product_path(product) %>
+        </h2>
+        <p><%= truncate(product.description, length: 100) %></p>
+        <p class="product-price"><%= number_to_currency(product.price) %></p>
+        <%= link_to "View Details", product_path(product), class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
