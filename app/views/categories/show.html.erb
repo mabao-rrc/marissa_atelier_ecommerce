@@ -6,6 +6,10 @@
 <div class="container my-5">
   <h1 class="text-center mb-4"><%= @category.name %></h1>
 
+  <div class="text-center mb-4">
+    <%= link_to "← Back to All Products", root_path, class: "btn btn-atelier" %>
+  </div>
+
   <div class="product-masonry">
     <% @products.each do |product| %>
       <div class="product-card">
