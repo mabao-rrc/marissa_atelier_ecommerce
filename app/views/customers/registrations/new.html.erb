@@ -18,31 +18,58 @@
     <!-- Render shared error messages if there are any validation issues -->
     <%= render "customers/shared/error_messages", resource: resource %>
 
-    <!-- Email input field -->
+    <!-- First Name -->
+    <div class="mb-3">
+      <%= f.label :first_name, class: "form-label" %>
+      <%= f.text_field :first_name, class: "form-control" %>
+    </div>
+
+    <!-- Last Name -->
+    <div class="mb-3">
+      <%= f.label :last_name, class: "form-label" %>
+      <%= f.text_field :last_name, class: "form-control" %>
+    </div>
+
+    <!-- Username -->
+    <div class="mb-3">
+      <%= f.label :username, class: "form-label" %>
+      <%= f.text_field :username, class: "form-control" %>
+    </div>
+
+    <!-- Email -->
     <div class="mb-3">
       <%= f.label :email, class: "form-label" %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
     </div>
 
-    <!-- Password input field -->
+    <!-- Phone -->
+    <div class="mb-3">
+      <%= f.label :phone, class: "form-label" %>
+      <%= f.telephone_field :phone, class: "form-control" %>
+    </div>
+
+    <!-- Address -->
+    <div class="mb-3">
+      <%= f.label :address, class: "form-label" %>
+      <%= f.text_area :address, rows: 2, class: "form-control" %>
+    </div>
+
+    <!-- Password -->
     <div class="mb-3">
       <%= f.label :password, class: "form-label" %>
-
-      <!-- Show password length hint if available -->
       <% if @minimum_password_length %>
         <div class="form-text text-muted mb-1">(<%= @minimum_password_length %> characters minimum)</div>
       <% end %>
-
       <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
     </div>
 
-    <!-- Password confirmation input field -->
+    <!-- Password Confirmation -->
     <div class="mb-4">
       <%= f.label :password_confirmation, class: "form-label" %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
     </div>
 
-    <!-- Submit button with brand styling -->
+    <!-- Submit Button -->
     <div class="d-grid">
       <%= f.submit "Sign Up", class: "btn btn-primary", style: "background-color: #896629; border: none;" %>
     </div>

@@ -7,12 +7,12 @@
 
   <%# Show Log In button unless already on sessions controller (e.g., /customers/sign_in) %>
   <% if controller_name != 'sessions' %>
-    <%= link_to "Log in", new_session_path(resource_name), class: "btn btn-outline-primary me-2" %>
+    <%= link_to "Log in", new_session_path(resource_name), class: "btn btn-atelier me-2" %>
   <% end %>
 
   <%# Show Sign Up button unless already on registrations controller (e.g., /customers/sign_up) %>
   <% if devise_mapping.registerable? && controller_name != 'registrations' %>
-    <%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-outline-secondary" %>
+    <%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-atelier" %>
   <% end %>
 
   <%# Show Forgot Password link unless already on passwords or registrations %>
