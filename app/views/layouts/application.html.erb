@@ -38,6 +38,29 @@
   </head>
 
   <body>
+    <div class="container mt-3">
+      <%# Flash messages for success (notice) and errors (alert) %>
+      <% if notice %>
+        <div class="alert alert-success"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger"><%= alert %></div>
+      <% end %>
+
+      <%# Sign Up / Log In / Log Out links based on authentication status %>
+      <div class="mb-3">
+        <% if customer_signed_in? %>
+          <%# If the customer is signed in, show a welcome message and logout button %>
+          <p class="text-muted">Welcome, <%= current_customer.email %>!</p>
+          <%= link_to 'Log Out', destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary btn-sm" %>
+        <% else %>
+          <%# If not signed in, show Sign Up and Log In buttons %>
+          <%= link_to 'Sign Up', new_customer_registration_path, class: "btn btn-outline-primary btn-sm me-2" %>
+          <%= link_to 'Log In', new_customer_session_path, class: "btn btn-outline-success btn-sm" %>
+        <% end %>
+      </div>
+    </div>
+
     <%# This is where the content of individual views will be inserted %>
     <%= yield %>
 

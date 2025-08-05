@@ -1,0 +1,49 @@
+<!-- 
+  app/views/customers/passwords/edit.html.erb
+  This page allows customers to set a new password after clicking the reset link.
+  Styled with Marissa Atelier branding using Bootstrap.
+-->
+
+<div class="container mt-5" style="max-width: 600px;">
+  <!-- Heading -->
+  <h1 class="text-center mb-4" style="font-family: 'Cormorant Garamond', serif; color: #896629;">
+    Reset Your Password
+  </h1>
+
+  <!-- Reset password form -->
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+    <!-- Hidden reset token -->
+    <%= f.hidden_field :reset_password_token %>
+
+    <!-- Email field -->
+    <div class="mb-3">
+      <%= f.label :email, class: "form-label" %>
+      <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+    </div>
+
+    <!-- New password field -->
+    <div class="mb-3">
+      <%= f.label :password, class: "form-label" %>
+      <% if @minimum_password_length %>
+        <small class="text-muted">(minimum <%= @minimum_password_length %> characters)</small>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+    </div>
+
+    <!-- Password confirmation field -->
+    <div class="mb-3">
+      <%= f.label :password_confirmation, class: "form-label" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    </div>
+
+    <!-- Submit button -->
+    <div class="d-grid">
+      <%= f.submit "Change My Password", class: "btn btn-primary", style: "background-color: #896629; border: none;" %>
+    </div>
+  <% end %>
+
+  <!-- Additional links -->
+  <div class="text-center mt-3">
+    <%= render "customers/shared/links" %>
+  </div>
+</div>

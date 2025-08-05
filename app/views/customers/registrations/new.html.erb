@@ -1,0 +1,56 @@
+<!-- 
+  app/views/customers/registrations/new.html.erb
+  This is the Devise Sign-Up form for customers.
+  It uses Bootstrap for layout and styling, and matches Marissa Atelier branding.
+-->
+
+<!-- Centered container with max width -->
+<div class="container mt-5" style="max-width: 600px;">
+  
+  <!-- Page heading styled with brand font and color -->
+  <h1 class="text-center mb-4" style="font-family: 'Cormorant Garamond', serif; color: #896629;">
+    Create Your Account
+  </h1>
+
+  <!-- Devise sign-up form -->
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    
+    <!-- Render shared error messages if there are any validation issues -->
+    <%= render "customers/shared/error_messages", resource: resource %>
+
+    <!-- Email input field -->
+    <div class="mb-3">
+      <%= f.label :email, class: "form-label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    </div>
+
+    <!-- Password input field -->
+    <div class="mb-3">
+      <%= f.label :password, class: "form-label" %>
+
+      <!-- Show password length hint if available -->
+      <% if @minimum_password_length %>
+        <div class="form-text text-muted mb-1">(<%= @minimum_password_length %> characters minimum)</div>
+      <% end %>
+
+      <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+    </div>
+
+    <!-- Password confirmation input field -->
+    <div class="mb-4">
+      <%= f.label :password_confirmation, class: "form-label" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+    </div>
+
+    <!-- Submit button with brand styling -->
+    <div class="d-grid">
+      <%= f.submit "Sign Up", class: "btn btn-primary", style: "background-color: #896629; border: none;" %>
+    </div>
+
+  <% end %>
+
+  <!-- Link to Log In or other Devise pages -->
+  <div class="text-center mt-3">
+    <%= render "customers/shared/links" %>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :customers
   get "categories/show"
   get "storefront/index"
   get "products/index"

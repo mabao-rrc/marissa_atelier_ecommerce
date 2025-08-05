@@ -1,0 +1,48 @@
+<%# 
+  app/views/customers/shared/_links.html.erb
+  Restyled Devise helper links using Bootstrap classes to match Marissa Atelier branding.
+%>
+
+<div class="text-center mt-4">
+
+  <%# Show Log In button unless already on sessions controller (e.g., /customers/sign_in) %>
+  <% if controller_name != 'sessions' %>
+    <%= link_to "Log in", new_session_path(resource_name), class: "btn btn-outline-primary me-2" %>
+  <% end %>
+
+  <%# Show Sign Up button unless already on registrations controller (e.g., /customers/sign_up) %>
+  <% if devise_mapping.registerable? && controller_name != 'registrations' %>
+    <%= link_to "Sign up", new_registration_path(resource_name), class: "btn btn-outline-secondary" %>
+  <% end %>
+
+  <%# Show Forgot Password link unless already on passwords or registrations %>
+  <% if devise_mapping.recoverable? && !%w[passwords registrations].include?(controller_name) %>
+    <div class="mt-3">
+      <%= link_to "Forgot your password?", new_password_path(resource_name), class: "text-decoration-none" %>
+    </div>
+  <% end %>
+
+  <%# Show Resend Confirmation Instructions link if using confirmable module and not on confirmations %>
+  <% if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+    <div class="mt-2">
+      <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "text-decoration-none" %>
+    </div>
+  <% end %>
+
+  <%# Show Resend Unlock Instructions link if using lockable module and not on unlocks %>
+  <% if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+    <div class="mt-2">
+      <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name), class: "text-decoration-none" %>
+    </div>
+  <% end %>
+
+  <%# Omniauth login buttons (optional, if enabled) %>
+  <% if devise_mapping.omniauthable? %>
+    <div class="mt-3">
+      <% resource_class.omniauth_providers.each do |provider| %>
+        <%= button_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "btn btn-outline-dark me-2" %>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>

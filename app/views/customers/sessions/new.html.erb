@@ -1,0 +1,49 @@
+<!-- 
+  app/views/customers/sessions/new.html.erb
+  This is the Devise Log In form for customers.
+  Styled to match the branding of Marissa Atelier using Bootstrap.
+-->
+
+<!-- Container for centering and spacing -->
+<div class="container mt-5" style="max-width: 600px;">
+  
+  <!-- Page title with brand font and color -->
+  <h1 class="text-center mb-4" style="font-family: 'Cormorant Garamond', serif; color: #896629;">
+    Log In to Your Account
+  </h1>
+
+  <!-- Log in form -->
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <!-- Email field -->
+    <div class="mb-3">
+      <%= f.label :email, class: "form-label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    </div>
+
+    <!-- Password field -->
+    <div class="mb-3">
+      <%= f.label :password, class: "form-label" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+    </div>
+
+    <!-- Remember me checkbox (if enabled) -->
+    <% if devise_mapping.rememberable? %>
+      <div class="mb-4 form-check">
+        <%= f.check_box :remember_me, class: "form-check-input" %>
+        <%= f.label :remember_me, class: "form-check-label" %>
+      </div>
+    <% end %>
+
+    <!-- Submit button with custom styling -->
+    <div class="d-grid">
+      <%= f.submit "Log In", class: "btn btn-primary", style: "background-color: #896629; border: none;" %>
+    </div>
+
+  <% end %>
+
+  <!-- Links to sign up or reset password -->
+  <div class="text-center mt-3">
+    <%= render "customers/shared/links" %>
+  </div>
+</div>
