@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     registrations: 'customers/registrations'
   }
 
+  # ✅ Static pages and storefront
   get "categories/show"
   get "storefront/index"
   get "products/index"
@@ -20,7 +21,11 @@ Rails.application.routes.draw do
     post 'remove_item'
     post 'update_item'
   end
+
+  # ✅ Checkout and Order routes
   get 'checkout', to: 'orders#new'
+  post 'checkout', to: 'orders#create'
+  get 'invoice/:id', to: 'orders#show', as: 'invoice' # ✅ View order invoice
 
   # ✅ Admin dashboard for managing products
   namespace :admin do
