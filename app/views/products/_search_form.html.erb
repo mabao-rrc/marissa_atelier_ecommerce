@@ -1,0 +1,14 @@
+<!-- app/views/products/_search_form.html.erb -->
+<%= form_with url: search_products_path, method: :get, local: true do |form| %>
+  <div class="mb-3">
+    <%= form.label :query, "Search Products" %>
+    <%= form.text_field :query, class: "form-control", placeholder: "Enter keyword..." %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :category_id, "Filter by Category" %>
+    <%= form.select :category_id, options_for_select(Category.pluck(:name, :id).unshift(["All Categories", ""])), {}, class: "form-select" %>
+  </div>
+
+  <%= form.submit "Search", class: "btn btn-primary" %>
+<% end %>

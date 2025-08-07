@@ -4,11 +4,26 @@ Rails.application.routes.draw do
     registrations: 'customers/registrations'
   }
 
+  # ✅ Devise + ActiveAdmin routes for admin users
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
+  # ✅ Health check route
+  get "up" => "rails/health#show", as: :rails_health_check
+
   # ✅ Static pages and storefront
-  get "categories/show"
   get "storefront/index"
-  get "products/index"
-  get "products/show"
+  root "storefront#index"
+
+  # ✅ Public-facing static content pages
+  get '/about', to: 'pages#show', defaults: { slug: 'about' }
+  get '/contact', to: 'pages#show', defaults: { slug: 'contact' }
+
+  # ✅ Route to display products by category (Feature 2.2)
+  get '/categories/:id', to: 'categories#show', as: 'category'
+
+  # ✅ Product search route (Feature 2.6 - keyword + category search)
+  get 'products/search', to: 'products#search', as: 'search_products'
 
   # ✅ Public-facing product pages with review submission support
   resources :products, only: [:index, :show] do
@@ -22,30 +37,13 @@ Rails.application.routes.draw do
     post 'update_item'
   end
 
-  # ✅ Checkout and Order routes
+  # ✅ Checkout and Order routes (Feature 3.1.3)
   get 'checkout', to: 'orders#new'
   post 'checkout', to: 'orders#create'
-  get 'invoice/:id', to: 'orders#show', as: 'invoice' # ✅ View order invoice
+  get 'invoice/:id', to: 'orders#show', as: 'invoice'
 
   # ✅ Admin dashboard for managing products
   namespace :admin do
     resources :products
   end
-
-  # ✅ Devise + ActiveAdmin routes for admin users
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-
-  # ✅ Health check route
-  get "up" => "rails/health#show", as: :rails_health_check
-
-  # ✅ Public-facing static content pages
-  get '/about', to: 'pages#show', defaults: { slug: 'about' }
-  get '/contact', to: 'pages#show', defaults: { slug: 'contact' }
-
-  # ✅ Route to display products by category (Feature 2.2)
-  get '/categories/:id', to: 'categories#show', as: 'category'
-
-  # ✅ Root path
-  root "storefront#index"
 end

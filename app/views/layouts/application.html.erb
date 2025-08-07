@@ -1,10 +1,3 @@
-<%# 
-  app/views/layouts/application.html.erb
-  This is the main layout for the Marissa Atelier e-commerce site.
-  It includes global styles (Google Fonts, Bootstrap), scripts, and
-  yields page-specific content.
-%>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -17,52 +10,86 @@
 
     <%= yield :head %>
 
-    <%# Favicon and Apple touch icon %>
+    <!-- Favicon and Apple Touch Icon -->
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Load Google Font: Cormorant Garamond %>
+    <!-- Google Font: Cormorant Garamond -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <%# Load Bootstrap CSS (v5.3.0) from CDN %>
+    <!-- Bootstrap CSS -->
     <%= stylesheet_link_tag "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" %>
 
-    <%# Load custom Rails application stylesheet %>
+    <!-- Application Styles -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <div class="container mt-3">
-      <%# Flash messages for success (notice) and errors (alert) %>
+    <!-- ✅ Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom mb-3">
+      <div class="container">
+        <!-- Site Title -->
+        <a class="navbar-brand fw-bold" href="<%= root_path %>">Marissa Atelier</a>
+
+        <!-- Hamburger Button for Mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Items -->
+        <div class="collapse navbar-collapse" id="navbarMain">
+          <ul class="navbar-nav ms-auto align-items-center gap-2">
+            <!-- Always show Search Products -->
+            <li class="nav-item">
+              <%= link_to "Search Products", search_products_path, class: "btn btn-outline-secondary btn-sm" %>
+            </li>
+
+            <% if customer_signed_in? %>
+              <!-- Welcome Text -->
+              <li class="nav-item text-muted small d-flex align-items-center">
+                Welcome, <%= current_customer.first_name.presence || current_customer.email %>
+              </li>
+
+              <!-- Log Out Button -->
+              <li class="nav-item">
+                <%= button_to 'Log Out', destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary btn-sm" %>
+              </li>
+            <% else %>
+              <!-- Sign Up -->
+              <li class="nav-item">
+                <%= link_to 'Sign Up', new_customer_registration_path, class: "btn btn-outline-primary btn-sm" %>
+              </li>
+
+              <!-- Log In -->
+              <li class="nav-item">
+                <%= link_to 'Log In', new_customer_session_path, class: "btn btn-outline-success btn-sm" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ✅ Flash Messages -->
+    <div class="container">
       <% if notice %>
         <div class="alert alert-success"><%= notice %></div>
       <% end %>
       <% if alert %>
         <div class="alert alert-danger"><%= alert %></div>
       <% end %>
-
-      <%# Auth links - Sign Up, Log In, Log Out %>
-      <div class="d-flex justify-content-end align-items-center mb-3 gap-2">
-        <% if customer_signed_in? %>
-          <span class="text-muted me-2">Welcome, <%= current_customer.first_name.presence || current_customer.email %>!</span>
-          <%= button_to 'Log Out', destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary btn-sm" %>
-        <% else %>
-          <%= link_to 'Sign Up', new_customer_registration_path, class: "btn btn-outline-primary btn-sm" %>
-          <%= link_to 'Log In', new_customer_session_path, class: "btn btn-outline-success btn-sm" %>
-        <% end %>
-      </div>
     </div>
 
-    <%# This is where the content of individual views will be inserted %>
+    <!-- ✅ Page Content -->
     <%= yield %>
 
-    <%# Load Bootstrap JS Bundle (for dropdowns, modals, etc.) %>
+    <!-- ✅ Bootstrap JS Bundle -->
     <%= javascript_include_tag "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" %>
 
-    <%# ✅ Debug: Confirm Turbo/UJS is active %>
+    <!-- ✅ Debug Console Message -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         console.log("Turbo/UJS loaded");

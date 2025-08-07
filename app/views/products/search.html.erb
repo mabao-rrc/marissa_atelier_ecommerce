@@ -1,0 +1,70 @@
+<%# app/views/products/search.html.erb %>
+
+<div class="container my-4">
+  <h1 class="mb-4">Search Products</h1>
+
+  <%# ---------------------------- %>
+  <%# Search Form Section %>
+  <%# ---------------------------- %>
+  <%= form_with url: search_products_path, method: :get, local: true, class: "row g-3 align-items-end" do %>
+    <div class="col-md-6">
+      <%# Keyword input field %>
+      <%= label_tag :keyword, "Keyword", class: "form-label" %>
+      <%= text_field_tag :keyword, params[:keyword], class: "form-control", placeholder: "Enter product name or description" %>
+    </div>
+
+    <div class="col-md-4">
+      <%# Dropdown for selecting a category (optional) %>
+      <%= label_tag :category_id, "Category", class: "form-label" %>
+      <%= select_tag :category_id,
+            options_from_collection_for_select(Category.all, :id, :name, params[:category_id]),
+            include_blank: "All Categories",
+            class: "form-select" %>
+    </div>
+
+    <div class="col-md-2 d-grid">
+      <%# Submit button for the search form %>
+      <%= submit_tag "Search", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <%# -------------------------------------------- %>
+  <%# Search Results Display (Card Grid Layout) %>
+  <%# -------------------------------------------- %>
+  <% if @products.any? %>
+    <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+      <% @products.each do |product| %>
+        <div class="col">
+          <div class="card h-100">
+            <%# Product image (if available) %>
+            <% if product.image_url.present? %>
+              <%= image_tag product.image_url, class: "card-img-top", alt: product.name %>
+            <% end %>
+
+            <div class="card-body">
+              <%# Product name linking to product details page %>
+              <h5 class="card-title">
+                <%= link_to product.name, product_path(product), class: "text-decoration-none" %>
+              </h5>
+
+              <%# Shortened product description %>
+              <p class="card-text text-muted">
+                <%= truncate(product.description, length: 100) %>
+              </p>
+
+              <%# Product price formatted to 2 decimal places %>
+              <p class="fw-bold">
+                $<%= number_with_precision(product.price, precision: 2) %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <%# Message shown when no products are found %>
+    <div class="alert alert-warning mt-4" role="alert">
+      No products found matching your search.
+    </div>
+  <% end %>
+</div>

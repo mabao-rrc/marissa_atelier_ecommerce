@@ -1,0 +1,18 @@
+<!-- app/views/products/search_results.html.erb -->
+<h1>Search Results</h1>
+
+<%= render "search_form" %>
+
+<% if @products.any? %>
+  <div class="row">
+    <% @products.each do |product| %>
+      <div class="col-md-4">
+        <h5><%= product.name %></h5>
+        <p><%= truncate(product.description, length: 100) %></p>
+        <p><strong>$<%= product.price %></strong></p>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No products found.</p>
+<% end %>
